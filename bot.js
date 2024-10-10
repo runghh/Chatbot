@@ -21,7 +21,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms)); // Função que usa
 const contatosPorLoja = {
     'Palmas': {
         'comercial': ' _*Vendedores Palmas:*_\n\n👤 Evania\n wa.me/+556384533618\n\n👤 Glaucilane\n wa.me/+556384567199\n\n👤 Iago\n wa.me/+556384565940\n\n👤 Vitoria\n wa.me/+556392452567\n\n👤 Manoel\n wa.me/+556392578159\n\n👤 Diogo\n wa.me/+556384536266',
-        'financeiro': '_*Financeiro Palmas:*_\n\n💰 Financeiro\n wa.me/+55638454-4708'
+        'financeiro': '_*Financeiro Palmas:*_\n\n💰 Financeiro\n wa.me/+556384544708'
     },
     'Araguaína': {
         'comercial': '_*Vendedores Araguaína:*_\n\n👤 Antonio\n wa.me/+556392778886\n\n👤 Edpo\n wa.me/+556392345717\n\n👤 Jessica\n wa.me/+556391029185\n\n👤 Daniele\n wa.me/+556391029940',
@@ -71,9 +71,9 @@ client.on('message', async msg => {
         userBusy[chatId] = true; // Marca o usuário como ocupado
         const contact = await msg.getContact();
         const name = contact.pushname;
-        await client.sendMessage(msg.from, `👋 Olá, ${name.split(" ")[0]}!\n\n✅ Sou o *assistente virtual* da Digisat Distribuidora.\n\n ⏰ Atendimento de segunda a sexta, das 8h às 22h; sábado, das 8h às 12h \n\n🗣️ Com quem você deseja falar?`);
+        await client.sendMessage(chatId, `👋 Olá, ${name.split(" ")[0]}!\n\n✅ Sou o *assistente virtual* da Digisat Distribuidora.\n\n ⏰ Atendimento de segunda a sexta, das 8h às 22h; sábado, das 8h às 12h \n\n🗣️ Com quem você deseja falar?`);
         await delay(2000);
-        await client.sendMessage(msg.from, `_*COMERCIAL e FINANCEIRO*_ \n\n*1* 👤 Palmas \n*2* 👤 Araguaína\n*3* 👤 Gurupi\n*4* 👤 Imperatriz\n*5* 👤 São Luís\n\n_*OUTRAS ÁREAS*_ \n\n*6* 🛍️ Compras\n*7* 🛠️ Suporte Técnico\n*8* 🗒️ Reclamações\n*9* 🙎 Kevin(Site) \n*10* 📱 Redes sociais\n\n_*digite uma das opções abaixo:*_`); 
+        await client.sendMessage(chatId, `_*COMERCIAL e FINANCEIRO*_ \n\n*1* 👤 Palmas \n*2* 👤 Araguaína\n*3* 👤 Gurupi\n*4* 👤 Imperatriz\n*5* 👤 São Luís\n\n_*OUTRAS ÁREAS*_ \n\n*6* 🛍️ Compras\n*7* 🛠️ Suporte Técnico\n*8* 🗒️ Reclamações\n*9* 🙎 Kevin(Site) \n*10* 📱 Redes sociais\n\n_*digite uma das opções abaixo:*_`); 
         userStates[chatId] = 'escolhendo-loja'; 
         userBusy[chatId] = false; // Libera o usuário
         return;
@@ -101,47 +101,47 @@ client.on('message', async msg => {
             case '6':
                 lojaEscolhida = 'Compras';
                 await delay(3000);
-                await client.sendMessage(msg.from, `_*${lojaEscolhida}:*_\n\n👤 Lucas Alencar \n wa.me/+556391260181 \n\n👤 Lucas Borges \n wa.me/+556391261158`);
+                await client.sendMessage(chatId, `_*${lojaEscolhida}:*_\n\n👤 Lucas Alencar \n wa.me/+556391260181 \n\n👤 Lucas Borges \n wa.me/+556391261158`);
                 await delay(3000);
-                await client.sendMessage(msg.from, '_Sessão finalizada._');
+                await client.sendMessage(chatId, '_Sessão finalizada._');
                 userStates[chatId] = 'inicio';
                 return;
             case '7':
                 lojaEscolhida = 'Suporte técnico';
                 await delay(3000);
-                await client.sendMessage(msg.from, `_*${lojaEscolhida}:*_\n\n👤 Assistência \n wa.me/+556384565749 \n\n👤 Nandin \n wa.me/+556384582000\n\n👤 Jean \n wa.me/+556384495697`);
+                await client.sendMessage(chatId, `_*${lojaEscolhida}:*_\n\n👤 Assistência \n wa.me/+556384565749 \n\n👤 Nandin \n wa.me/+556384582000\n\n👤 Jean \n wa.me/+556384495697`);
                 await delay(3000);
-                await client.sendMessage(msg.from, '_Sessão finalizada._');
+                await client.sendMessage(chatId, '_Sessão finalizada._');
                 userStates[chatId] = 'inicio';
                 return;
             case '8':
                 lojaEscolhida = 'Qualidade';
                 await delay(3000);
-                await client.sendMessage(msg.from, `_*${lojaEscolhida}:*_\n\n👤 Reclamações e Avaliações\n wa.me/+556392529448`);
+                await client.sendMessage(chatId, `_*${lojaEscolhida}:*_\n\n👤 Reclamações e Depoimentos \n wa.me/+556392529448`);
                 await delay(3000);
-                await client.sendMessage(msg.from, '_Sessão finalizada._');
+                await client.sendMessage(chatId, '_Sessão finalizada._');
                 userStates[chatId] = 'inicio';
                 return;
             case '9':
                 await delay(3000);
-                await client.sendMessage(msg.from, '👤 Você está falando com um atendente.\n _Digite (SAIR) para encerrar a conversa._'); 
+                await client.sendMessage(chatId, '👤 Você está falando com um atendente.\n _Digite (SAIR) para encerrar a conversa._'); 
                 userStates[chatId] = 'atendente';
                 return;
             case '10':
                 await delay(3000);
-                await client.sendMessage(msg.from, `👤 Redes Sociais:\n\nInstagram \n instagram.com/digisatdistribuidora/\n\nFacebook \n facebook.com/DigisatDistribuidora \n\nYoutube \n youtube.com/DigisatDistribuidora \n\nTiktok \n tiktok.com/@digisatdistribuidora \n\nLinkedin \n br.linkedin.com/company/digisat-distribuidora`);
+                await client.sendMessage(chatId, `👤 Redes Sociais:\n\nInstagram \n instagram.com/digisatdistribuidora/\n\nFacebook \n facebook.com/DigisatDistribuidora \n\nYoutube \n youtube.com/DigisatDistribuidora \n\nTiktok \n tiktok.com/@digisatdistribuidora \n\nLinkedin \n br.linkedin.com/company/digisat-distribuidora`);
                 await delay(3000);
-                await client.sendMessage(msg.from, '_Sessão finalizada._');
+                await client.sendMessage(chatId, '_Sessão finalizada._');
                 userStates[chatId] = 'inicio';
                 return;
             default:
-                await client.sendMessage(msg.from, '_*Opção inválida*. Por favor, escolha uma das opções válidas_');
+                await client.sendMessage(chatId, '_*Opção inválida*. Por favor, escolha uma das opções válidas_');
                 return;
         }
 
         // Se escolheu uma loja válida
         if (['1', '2', '3', '4', '5'].includes(msg.body)) {
-            await client.sendMessage(msg.from, `✅ Você escolheu a loja ${lojaEscolhida}.\n\n _Com qual área você deseja falar?_ \n\n*1* 👤 Comercial\n*2* 💰 Financeiro`);
+            await client.sendMessage(chatId, `✅ Você escolheu a loja ${lojaEscolhida}.\n\n _Com qual área você deseja falar?_ \n\n*1* 👤 Comercial\n*2* 💰 Financeiro`);
             userStates[chatId] = { state: 'escolhendo-area', loja: lojaEscolhida }; // Salva a loja escolhida
             return;
         }
@@ -151,30 +151,29 @@ client.on('message', async msg => {
     if (currentState.state === 'escolhendo-area') {
         const loja = currentState.loja; // Pega a loja escolhida
 
-        await client.sendMessage(msg.from, '...'); // Simula digitação
         await delay(3000); // Aguarda um tempo
 
         if (msg.body === '1') {
-            await client.sendMessage(msg.from, contatosPorLoja[loja].comercial);
+            await client.sendMessage(chatId, contatosPorLoja[loja].comercial);
             await delay(3000);
-            await client.sendMessage(msg.from, '_Sessão finalizada._');
+            await client.sendMessage(chatId, '_Sessão finalizada._');
             userStates[chatId] = 'inicio'; // Reseta o estado do usuário
             return;
         } else if (msg.body === '2') {
-            await client.sendMessage(msg.from, contatosPorLoja[loja].financeiro);
+            await client.sendMessage(chatId, contatosPorLoja[loja].financeiro);
             await delay(3000);
-            await client.sendMessage(msg.from, '_Sessão finalizada._');
+            await client.sendMessage(chatId, '_Sessão finalizada._');
             userStates[chatId] = 'inicio'; // Reseta o estado do usuário
             return;
         } else {
-            await client.sendMessage(msg.from, '_*Opção inválida*. Por favor, escolha uma das opções válidas_');
+            await client.sendMessage(chatId, '_*Opção inválida*. Por favor, escolha uma das opções válidas_');
             return;
         }
     }
 
     // Para encerrar a sessão
     if (msg.body.toUpperCase() === 'SAIR') {
-        await client.sendMessage(msg.from, '_Sessão encerrada. Para reiniciar, envie qualquer mensagem._');
+        await client.sendMessage(chatId, '_Sessão encerrada. Para reiniciar, envie qualquer mensagem._');
         userStates[chatId] = 'inicio'; // Reseta o estado do usuário
         userBusy[chatId] = false; // Libera o usuário
     }
